@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Přihlašování na Den školy</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Knihovna pro Google přihlášení -->
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+</head>
+<body>
+    <header>
+        <h1>Den školy - Výběr aktivit</h1>
+        <div id="user-info">
+            <!-- Vykreslí Google tlačítko -->            
+            <div class="g_id_signin" data-type="standard"></div>
+            <span id="user-email" style="display:none;"></span>
+        </div>
+    </header>
+
+    <!-- Hlavní obsah (skrytý před přihlášením) -->
+    <main id="app-content" style="display: none;">
+        
+        <section id="selection-section">
+            <h2>Vaše volby (Seřaďte 5 preferencí)</h2>
+            <p>Kliknutím na aktivitu v katalogu níže ji přidáte do svého seznamu. Seřadit je poté můžete pomocí přetažení (drag and drop).</p>
+            <div id="selected-list">
+                <!-- JS vložení vybraných aktivit -->
+            </div>
+            <button id="submit-btn" disabled>Odeslat přihlášku</button>
+            <p id="status-message"></p>
+        </section>
+
+        <hr>
+
+        <section id="catalog-section">
+            <h2>Katalog aktivit</h2>
+            <div id="loading">Načítám data z databáze...</div>
+            <div id="activities-grid">
+                <!-- JS vložení karet aktivit -->
+            </div>
+        </section>
+
+    </main>
+
+    <script src="app.js"></script>
+</body>
+</html>
