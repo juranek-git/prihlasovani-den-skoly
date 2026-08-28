@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Přihlašování na Den školy</title>
+    <title>Přihlašování na Den školy - TESTOVACÍ REŽIM</title>
     <link rel="stylesheet" href="styles.css">
     <!-- Knihovna pro Google přihlášení -->
     <script src="https://accounts.google.com/gsi/client" async defer></script>
@@ -11,19 +11,27 @@
 <body>
     <header>
         <h1>Den školy - Výběr aktivit</h1>
+        <p>Testovací režim, zatím prosím nešířit mezi studenty. Přihlášení školním Google účtem. </p>
         <div id="user-info">
             <!-- Vykreslí Google tlačítko -->            
             <div class="g_id_signin" data-type="standard"></div>
             <span id="user-email" style="display:none;"></span>
         </div>
+        
     </header>
 
     <!-- Hlavní obsah (skrytý před přihlášením) -->
     <main id="app-content" style="display: none;">
         
         <section id="selection-section">
-            <h2>Vaše volby (Seřaďte 5 preferencí)</h2>
-            <p>Kliknutím na aktivitu v katalogu níže ji přidáte do svého seznamu. Seřadit je poté můžete pomocí přetažení (drag and drop).</p>
+            <h2>Vaše volby (seřaď si svých 5 preferencí)</h2>
+            <p>Kliknutím na aktivitu v katalogu níže ji přidáte do svého seznamu. Seřadit je poté můžete pomocí přetažení (drag and drop) - 
+                aktivita, po které nejvíce toužíte, je nahoře = vaše 1. volba. </p>
+            <p>Informace o zájmu jsou orientační a ukazují kapacitu v jednom bloku (celková kapacita je tedy 2× více) - můžete si dát do seznamu i 
+                naplněné aktivity. Ke svému žebříčku se můžete také kdykoli vrátit, provést změny a odeslat novou variantu.
+                a měnit ho. Po ukončení přihlašování systém vypočítá optimální variantu vzhledem ke splnění maximálně možného množství přání celé 
+                školy. Není brán žádný ohled na rychlost přihlášení.
+            </p>
             <div id="selected-list">
                 <!-- JS vložení vybraných aktivit -->
             </div>
