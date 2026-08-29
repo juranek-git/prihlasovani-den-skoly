@@ -215,6 +215,7 @@ document.getElementById('submit-btn').onclick = async () => {
             msg.style.color = 'green';
             msg.textContent = 'Vaše volby byly úspěšně uloženy!';
             btn.textContent = 'Úspěšně odesláno';
+            loadActivities(); // Načteme znovu, aby se aktualizoval stav    
         }
     } catch (err) {
         msg.style.color = 'red';
