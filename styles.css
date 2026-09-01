@@ -140,6 +140,15 @@ header {
     display: flex;
     align-items: center;
     gap: 10px;
+
+    /* Zakáže označování textu v kartě */
+    -webkit-user-select: none; /* iOS Safari a Android WebKit */
+    -moz-user-select: none;    /* Firefox */
+    -ms-user-select: none;     /* Internet Explorer/Edge */
+    user-select: none;         /* Standardní pravidlo */
+
+    /* Zakáže vyskakování kontextové nabídky při dlouhém podržení prstu (iOS) */
+    -webkit-touch-callout: none;
 }
 
 .selected-slot:active {
