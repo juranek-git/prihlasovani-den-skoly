@@ -168,6 +168,8 @@ header {
     color: #888;
     font-size: 1.2em;
     touch-action: none; /* Zabrání nežádoucím gestům na dotykových zařízeních */
+    -webkit-user-select: none;
+    user-select: none;
 }
 
 .selected-card {
