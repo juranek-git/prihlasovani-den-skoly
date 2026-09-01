@@ -181,3 +181,8 @@ header {
     background-color: #ef9744; 
     color: white;
 }
+
+.selected-slot.dragging,
+.dnd-poly-drag-image {
+    pointer-events: none !important;
+}
