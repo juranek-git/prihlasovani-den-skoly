@@ -132,6 +132,10 @@ function removeActivity(id) {
 }
 
 // Vykreslení vybraných preferencí s podporou Drag & Drop
+
+// Globální pomocná proměnná pro uchování indexu (řeší chybu na mobilech)
+let currentDraggedIndex = null;
+
 function renderSelection() {
     const list = document.getElementById('selected-list');
     list.innerHTML = '';
@@ -145,10 +149,16 @@ function renderSelection() {
         slot.addEventListener('dragstart', (e) => {
             slot.classList.add('dragging');
             e.dataTransfer.setData('text/plain', index);
+            currentDraggedIndex = index;
         });
 
         slot.addEventListener('dragend', () => {
             slot.classList.remove('dragging');
+            currentDraggedIndex = null;
+        });
+
+        slot.addEventListener('dragenter', (e) => {
+            e.preventDefault(); 
         });
 
         slot.addEventListener('dragover', (e) => {
@@ -157,7 +167,7 @@ function renderSelection() {
 
         slot.addEventListener('drop', (e) => {
             e.preventDefault();
-            const draggedIndex = parseInt(e.dataTransfer.getData('text/plain'));
+            const draggedIndex = currentDraggedIndex !== null ? currentDraggedIndex : parseInt(e.dataTransfer.getData('text/plain'));
             const targetIndex = index;
 
             if (draggedIndex !== targetIndex && !isNaN(draggedIndex)) {
