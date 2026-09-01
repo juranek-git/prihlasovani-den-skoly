@@ -158,6 +158,7 @@ header {
 .drag-handle {
     color: #888;
     font-size: 1.2em;
+    touch-action: none; /* Zabrání nežádoucím gestům na dotykových zařízeních */
 }
 
 .selected-card {

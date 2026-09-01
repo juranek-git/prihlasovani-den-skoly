@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Přihlašování na Den školy - TESTOVACÍ REŽIM</title>
+    <title>Přihlašování na Den školy</title>
     <link rel="stylesheet" href="styles.css">
     <!-- Knihovna pro Google přihlášení -->
     <script src="https://accounts.google.com/gsi/client" async defer></script>
@@ -11,16 +11,16 @@
 <body>
     <header>
         <h1>Den školy - Výběr aktivit</h1>
-        <p>Přihlášení školním Google účtem.</p>
+        <p>&nbsp;Přihlášení školním Google účtem.&nbsp;</p>
         <div id="user-info">
-            <!-- Vykreslí Google tlačítko -->            
+            <!-- Google tlačítko -->            
             <div class="g_id_signin" data-type="standard"></div>
             <span id="user-email" style="display:none;"></span>
         </div>
         
     </header>
 
-    <!-- Hlavní obsah (skrytý před přihlášením) -->
+    <!-- Hlavní obsah -->
     <main id="app-content" style="display: none;">
         
         <section id="selection-section">
@@ -52,5 +52,20 @@
     </main>
 
     <script src="app.js"></script>
+    
+    <!-- Polyfill pro mobilní Drag & Drop -->
+    <script src="https://cdn.jsdelivr.net/npm/mobile-drag-drop@2.3.0-rc.2/index.min.js"></script>
+    <script>
+        // Inicializace překladače dotyků
+        MobileDragDrop.polyfill({
+            // Uživatel musí na položce podržet prst 250ms, než začne přesun.
+            // To zabrání tomu, aby se aktivita nechtěně přesunula při běžném scrollování stránkou.
+            holdToDrag: 250
+        });
+
+        // Tento řádek zabrání problému v prohlížeči Safari (iOS), 
+        // který občas ruší tažení prstem.
+        window.addEventListener('touchmove', function() {}, {passive: false});
+    </script>
 </body>
 </html>
