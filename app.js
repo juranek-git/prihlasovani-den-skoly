@@ -88,7 +88,7 @@ function renderCatalog() {
             <h3>${act.Nazev}</h3>
             <p><small>${act.Organizatori} | ${act.Misto}</small></p>
             <p>${act.Popis}</p>
-            <p><strong>Poplatek:</strong> ${act.Poplatek}</p>
+            <p><strong>Co s sebou:</strong> ${act.Poplatek}</p>
             <div>
                 <small>Zájem: ${act.AktualniZajem} / Kapacita: ${act.Kapacita}</small>
                 <div class="capacity-bar">
