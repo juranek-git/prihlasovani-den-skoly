@@ -44,7 +44,7 @@ header {
 }
 
 .btn-remove {
-    background: #ef4444;
+    background: #ef9744;
     color: white;
     border: none;
     padding: 5px 10px;
@@ -61,7 +61,11 @@ header {
     border-radius: 6px;
     cursor: pointer;
     width: 100%;
-    margin-top: 15px;
+    margin: 15px auto 0 auto;
+    max-width: 820px;
+    border: 2px solid blue;
+    display: flex;
+    justify-content: center;
 }
 
 #submit-btn:disabled {
@@ -93,11 +97,11 @@ header {
 
 /* Styl pro tlačítko, když slouží jako zrušení výběru */
 .btn-cancel {
-    background: #ef4444; /* Barva upozorňující na zrušení */
+    background: #ef9744; /* Barva upozorňující na zrušení */
 }
 
 .btn-cancel:hover {
-    background: #dc2626; /* Tmavší barva po přejetí myší */
+    background: #dd632a; /* Tmavší barva po přejetí myší */
 }
 
 .capacity-bar {
@@ -128,7 +132,8 @@ header {
 
 .selected-slot {
     padding: 10px;
-    margin-bottom: 5px;
+    margin: 0 auto 10px auto;
+    max-width: 800px;
     background-color: #fff;
     border: 1px dashed #ccc;
     cursor: grab;
@@ -142,8 +147,12 @@ header {
 }
 
 .selected-slot.dragging {
-    opacity: 0.4; 
-    background-color: #f0f0f0;
+    opacity: 0.8; 
+    background-color: #ffffff; 
+    border: 2px solid var(--primary); 
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2); 
+    transform: scale(0.8); 
+    z-index: 50; 
 }
 
 .drag-handle {
@@ -157,6 +166,6 @@ header {
 }
 
 .selected-card button {
-    background-color: #f44336; 
+    background-color: #ef9744; 
     color: white;
 }
