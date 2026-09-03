@@ -109,17 +109,17 @@ function renderCatalog() {
             <h3>${act.Nazev}</h3>
             <p><small>${act.Organizatori} | ${act.Misto}</small></p>
             <p>${act.Popis}</p>
-            <p><strong>Poplatek:</strong> ${act.Poplatek}</p>
+            <p><strong>S sebou:</strong> ${act.Poplatek}</p>
             
             <div style="margin-top: 10px;">
                 <!-- 1. Progress Bar: Hlavní volby -->
-                <small><strong>1.–2. volba:</strong> ${zajemPrimarni} / max. ${maxKapacita}</small>
+                <small><strong>1.–2. volba:</strong> ${zajemPrimarni} / max. ${kapacita} × 2</small>
                 <div class="capacity-bar">
                     <div class="${barPrimarniClass}" style="width: ${sirkaPrimarni}%"></div>
                 </div>
 
                 <!-- 2. Progress Bar: Náhradní volby -->
-                <small><strong>3.–5. volba (náhradní):</strong> ${zajemSekundarni} / max. ${maxKapacita}</small>
+                <small><strong>3.–5. volba (náhradní):</strong> ${zajemSekundarni} </small>
                 <div class="capacity-bar">
                     <div class="${barSekundarniClass}" style="width: ${sirkaSekundarni}%"></div>
                 </div>
