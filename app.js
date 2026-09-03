@@ -1,4 +1,4 @@
-const API_URL = 'https://script.google.com/macros/s/AKfycbzf-xeXCZM8elaekNy3EXCVhyiQRSCFbJiPWGFdV3veBKTEHX5wnCScNDH8o9Si4aLwWQ/exec';
+const API_URL = 'https://script.google.com/macros/s/AKfycbzH2QmpLmWxvgUUR77xQpWec1vE5LmNPWI6bio0pCT8r6ieXAK0s3oAxetClZOnDNh6UQ/exec';
 const CLIENT_ID = '135041034475-9u7f4b93isfsvlh521fo82j8ifog1q5d.apps.googleusercontent.com';
 
 let userEmail = null;
@@ -68,46 +68,72 @@ async function loadActivities() {
     }
 }
 
-// Vykreslení karet aktivit
+// Vykreslení karet aktivit se dvěma progress bary
 function renderCatalog() {
     const grid = document.getElementById('activities-grid');
     grid.innerHTML = '';
     
     activitiesData.forEach(act => {
         const isSelected = selectedActivities.some(s => s.ID === act.ID);
-        const procentoZaplneni = Math.min((act.AktualniZajem / act.Kapacita) * 100, 100);
-        let barClass = 'capacity-fill';
-        if (procentoZaplneni > 75) barClass += ' high';
-        if (procentoZaplneni >= 100) barClass += ' full';
+        const kapacita = Number(act.Kapacita) || 1;
+        const zajemPrimarni = Number(act.ZajemPrimarni) || 0;
+        const zajemSekundarni = Number(act.ZajemSekundarni) || 0;
+
+        // Dvojnásobná kapacita = 100% šířka ukazatele
+        const maxKapacita = kapacita * 2;
+
+        // Výpočet šířky progress barů v % (max 100 %)
+        const sirkaPrimarni = Math.min((zajemPrimarni / maxKapacita) * 100, 100);
+        const sirkaSekundarni = Math.min((zajemSekundarni / maxKapacita) * 100, 100);
+
+        // Určení barvy pro 1. progress bar (Primární volby 1-2)
+        let barPrimarniClass = 'bar-fill bar-primary-green';
+        if (zajemPrimarni > maxKapacita) {
+            barPrimarniClass = 'bar-fill bar-primary-red';       // 30+ (Červená)
+        } else if (zajemPrimarni > kapacita) {
+            barPrimarniClass = 'bar-fill bar-primary-orange';    // 15–30 (Oranžová)
+        }
+
+        // Určení barvy pro 2. progress bar (Náhradní volby 3-5)
+        let barSekundarniClass = 'bar-fill bar-backup-blue';
+        if (zajemSekundarni > maxKapacita) {
+            barSekundarniClass = 'bar-fill bar-backup-black';    // 30+ (Černá)
+        } else if (zajemSekundarni > kapacita) {
+            barSekundarniClass = 'bar-fill bar-backup-purple';   // 15–30 (Tmavě fialová)
+        }
 
         const card = document.createElement('div');
-        // Přidáme třídu is-selected, pokud je karta vybrána
         card.className = `activity-card ${isSelected ? 'is-selected' : ''}`;
         
         card.innerHTML = `
             <h3>${act.Nazev}</h3>
             <p><small>${act.Organizatori} | ${act.Misto}</small></p>
             <p>${act.Popis}</p>
-            <p><strong>Co s sebou:</strong> ${act.Poplatek}</p>
-            <div>
-                <small>Zájem: ${act.AktualniZajem} / Kapacita: ${act.Kapacita}</small>
+            <p><strong>Poplatek:</strong> ${act.Poplatek}</p>
+            
+            <div style="margin-top: 10px;">
+                <!-- 1. Progress Bar: Hlavní volby -->
+                <small><strong>1.–2. volba:</strong> ${zajemPrimarni} / max. ${maxKapacita}</small>
                 <div class="capacity-bar">
-                    <div class="${barClass}" style="width: ${procentoZaplneni}%"></div>
+                    <div class="${barPrimarniClass}" style="width: ${sirkaPrimarni}%"></div>
+                </div>
+
+                <!-- 2. Progress Bar: Náhradní volby -->
+                <small><strong>3.–5. volba (náhradní):</strong> ${zajemSekundarni} / max. ${maxKapacita}</small>
+                <div class="capacity-bar">
+                    <div class="${barSekundarniClass}" style="width: ${sirkaSekundarni}%"></div>
                 </div>
             </div>
-            <!-- Zrušili jsme atribut disabled a dynamicky měníme třídu i text -->
+
             <button class="btn-add ${isSelected ? 'btn-cancel' : ''}">
                 ${isSelected ? 'Je vybráno - zrušit výběr' : 'Přidat do preferencí'}
             </button>
         `;
 
-        // Event listener na tlačítko podle stavu
         const btn = card.querySelector('.btn-add');
         if (isSelected) {
-            // Pokud je už vybráno, kliknutí aktivitu odebere
             btn.onclick = () => removeActivity(act.ID);
         } else {
-            // Pokud není vybráno, kliknutí ji přidá
             btn.onclick = () => selectActivity(act);
         }
         

@@ -120,6 +120,22 @@ header {
 .capacity-fill.high { background: #f59e0b; }
 .capacity-fill.full { background: #ef4444; }
 
+/* Základní styl pro animovaný výplňový pasek */
+.bar-fill {
+    height: 100%;
+    transition: width 0.3s ease, background-color 0.3s ease;
+}
+
+/* 1. Progress Bar - Barvy pro primární volby (1.-2. místo) */
+.bar-primary-green { background-color: #10b981; }  /* 0 - 100% kapacit (Zelená) */
+.bar-primary-orange { background-color: #f97316; } /* 100% - 200% kapacit (Oranžová) */
+.bar-primary-red { background-color: #ef4444; }    /* Nad 200% kapacit (Červená) */
+
+/* 2. Progress Bar - Barvy pro náhradní volby (3.-5. místo) */
+.bar-backup-blue { background-color: #3b82f6; }   /* 0 - 100% kapacit (Modrá) */
+.bar-backup-purple { background-color: #581c87; } /* 100% - 200% kapacit (Tmavě fialová) */
+.bar-backup-black { background-color: #0f172a; }  /* Nad 200% kapacit (Černá) */
+
 .btn-add {
     margin-top: auto;
     background: var(--primary);
